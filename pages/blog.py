@@ -7,12 +7,6 @@ import os
 BLOG_TITLE = "Technical Blog"
 BLOG_SUBTITLE = "Confidence in Concepts — watch the video explanation below."
 
-# Path to your video asset
-VIDEO_PATH = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), "..", "assets", "Blog.mp4"
-)
-
-
 def blog_page():
 
     # Custom continuous glowing background animation
@@ -57,12 +51,10 @@ def blog_page():
     # --- NATIVE INLINE VIDEO PLAYER CONFIGURATION ---
     video_player = ft.Video(
         expand=True,
-        playlist=[
-            ft.VideoMedia(VIDEO_PATH)
-        ],
-        show_controls=True,
+        playlist=[ft.VideoMedia("/Blog.mp4")],
         autoplay=False,
-        muted=False,
+        aspect_ratio=9/16,
+        show_controls=True,
     )
 
     # Video container adjusted to match a vertical phone display layout
