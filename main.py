@@ -23,27 +23,14 @@ def main(page: ft.Page):
         {"label": "GitHub",   "icon": "🐙", "color": "#58a6ff"},
     ]
 
-    # SAFE ROUTING: Dynamically calls the pages safely whether they accept arguments or not
+
+    # Routing: Calls page builders with correct signatures based on their definitions
     def get_page(index):
-        try:
-            if index == 0: return timeline_page(page)
-        except TypeError:
-            if index == 0: return timeline_page()
-            
-        try:
-            if index == 1: return matlab_page(page)
-        except TypeError:
-            if index == 1: return matlab_page()
-            
-        try:
-            if index == 2: return blog_page(page)
-        except TypeError:
-            if index == 2: return blog_page()
-            
-        try:
-            if index == 3: return github_page(page)
-        except TypeError:
-            if index == 3: return github_page()
+        if index == 0: return timeline_page(page)
+        if index == 1: return matlab_page(page)
+        if index == 2: return blog_page()      # No arguments as per blog.py
+        if index == 3: return github_page()    # No arguments as per github.py
+        return ft.Container()
 
     # ── Main App Structure ──────────────────────────────────────────────────
     def build_main_app():
@@ -303,7 +290,7 @@ def main(page: ft.Page):
         page.controls.clear()
         page.update()
         build_main_app()
-
+        
     build_splash()
 
 
